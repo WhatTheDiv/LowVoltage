@@ -1,0 +1,21 @@
+{
+  "name": "lowvoltage",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Pat Cannon",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "nedb": "^1.8.0",
+    "nedb-async": "^0.1.6",
+    "nodemon": "^3.1.7",
+    "uuid": "^10.0.0"
+  }
+}
