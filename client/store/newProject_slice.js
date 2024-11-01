@@ -7,9 +7,11 @@ const initialState = {
   city: 'bayport',
   zip: '11705',
   state: 'NY',
+  newLocationName: 'stairwell',
   newZoneName: 'MDF',
-  newZoneLocation: 'Main office',
+  newZoneLocation_id: '',
   zones: [],
+  deviceLocations: [{ name: 'Leasing office by door', id: '', deviceIds: [] }, { name: 'main entrance', id: '', deviceIds: [] }],
   newDevice: true,
   newDeviceName: 'Fixed cam',
   newDevicDescription: 'Fixed camera painted black',
@@ -59,15 +61,13 @@ const newProject = createSlice({
       if (action.payload.newZoneName !== undefined)
         state.newZoneName = action.payload.newZoneName
 
-      if (action.payload.newZoneLocation !== undefined)
-        state.newZoneLocation = action.payload.newZoneLocation
+      if (action.payload.newZoneLocation_id !== undefined)
+        state.newZoneLocation_id = action.payload.newZoneLocation_id
     },
-    addZone: (state, action) => {
-      if (state.newZoneName.trim() !== '' && state.zones.findIndex(z => z.name === state.newZoneName) < 0) {
-        state.zones.push({ name: state.newZoneName, location: state.newZoneLocation })
-        state.newZoneName = ""
-        state.newZoneLocation = ""
-      }
+    setLocation: (state, action) => {
+      if (action.payload.locationName !== undefined)
+        state.newLocationName = action.payload.locationName
+
     },
     removeZone: (state, action) => {
       if (action.payload.zoneName !== undefined) {
@@ -183,6 +183,7 @@ export const {
   removeZone,
   setZone,
   addZone,
+  setLocation,
   setProjectName,
   setStreet,
   setCity,

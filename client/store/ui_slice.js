@@ -6,9 +6,14 @@ const initialState = {
   screenHeight: 0,
   screenWidth: 0,
   hydrated: false,
+  tabExpanded: false,
+  tabSelected: 'view',
+  viewSelected: 'device',
   error: false,
   errorMessage: '',
   archivedErrors: [],
+  defaultTab: 'overview',
+  defaultView: 'zone',
 }
 
 const ui = createSlice({
@@ -46,10 +51,25 @@ const ui = createSlice({
 
       if (action.payload.screenWidth !== undefined)
         state.screenWidth = action.payload.screenWidth
+    },
+    setTab: (state, action) => {
+      if (action.payload.tabExpanded !== undefined)
+        state.tabExpanded = action.payload.tabExpanded
+
+      if (action.payload.tabSelected !== undefined)
+        state.tabSelected = action.payload.tabSelected
+
+      if (action.payload.viewSelected !== undefined)
+        state.viewSelected = action.payload.viewSelected
+    },
+    resetTab: (state) => {
+      state.tabExpanded = false
+      state.tabSelected = state.defaultTab
+      state.viewSelected = state.defaultView
     }
   }
 })
 
 export default ui.reducer
 
-export const { setColorScheme, setHydrated, dehydrate, setError, clearError, setScreenDims } = ui.actions
+export const { setTab, setColorScheme, setHydrated, dehydrate, setError, clearError, setScreenDims } = ui.actions

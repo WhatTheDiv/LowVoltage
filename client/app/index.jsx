@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from "react-native";
 import React, { useEffect } from "react";
-import gs, { appBackground } from "../assets/globalStyles";
+import gs, { appBackground, f_hlt2 } from "../assets/globalStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { router } from "expo-router";
 
@@ -45,7 +45,7 @@ const loading = () => {
     <View
       style={[gs.flex1, gs.appBackground, gs.justify_center, gs.align_center]}
     >
-      <Text>Loading page</Text>
+      <Text style={[gs.text_gray, gs.text_large]}>Loading app ... </Text>
     </View>
   );
 };
@@ -56,23 +56,26 @@ const hydration = async (dispatch, bus) => {
 
   const { status, result } = await fillFetchRequest({
     route: "/hydration",
-    method: "GET",
+    method: "POST",
+    _body: { entityId: "876bd2ba-a6dc-496c-a26b-44a15eb3c27f" },
   });
 
-  const { projectNamesAndIds } = result;
-
+  const { allProjectNamesAndIds } = result;
+  console.log("page load did fail: ", status.didFail(), status);
   if (status.didFail()) {
-    dispatch(setError({ errorMessage: `Failed to hydrate ( ${message} )` }));
+    dispatch(setError({ errorMessage: `${status.errorMessage}` }));
     return router.replace("/fallback");
   }
 
-  dispatch(syncProjectList({ projectNamesAndIds }));
+  console.log("%cProject list from server: ", f_hlt2, allProjectNamesAndIds);
+
+  dispatch(syncProjectList({ allProjectNamesAndIds }));
   dispatch(setColorScheme({ colorScheme }));
   dispatch(setHydrated({ hydrated: true }));
   dispatch(setScreenDims({ screenHeight: height, screenWidth: width }));
 
-  if (projectNamesAndIds.length >= 1) router.replace("/existing");
-  else router.replace("/create");
+  router.replace("/existing");
+  // else router.replace("/create");
 };
 
 // delete me

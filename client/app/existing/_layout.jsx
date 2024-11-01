@@ -16,10 +16,16 @@ const ExistingProject_layout = () => {
 
   return (
     <View style={[gs.flex1, gs.relative]}>
+      <View
+        style={[
+          gs.appBackground2,
+          { paddingTop: Platform.OS === "android" ? 35 : 0 },
+        ]}
+      />
       <View style={[gs.flex1]}>
         <Stack>
           <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="[id]" />
+          <Stack.Screen name="[id]" options={{ headerShown: false }} />
         </Stack>
       </View>
     </View>

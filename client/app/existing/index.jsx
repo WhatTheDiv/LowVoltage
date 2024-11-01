@@ -1,6 +1,19 @@
 // @ts-nocheck
-import { Pressable, StyleSheet, Text, View, ScrollView } from "react-native";
-import gs, { orangeColor } from "../../assets/globalStyles";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  StatusBar,
+} from "react-native";
+import gs, {
+  appBackground2,
+  gray,
+  greenColor,
+  orangeColor,
+  redColor,
+} from "../../assets/globalStyles";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { router, Redirect } from "expo-router";
@@ -13,14 +26,15 @@ import { resetForm } from "../../store/newProject_slice";
 
 const Existing = () => {
   const dispatch = useDispatch();
-  const projectNamesAndIds = useSelector(
-    (state) => state.projects.projectNamesAndIds
+  const allProjectNamesAndIds = useSelector(
+    (state) => state.projects.allProjectNamesAndIds
   );
 
   const calcedSpacing = useSelector((state) => state.ui.screenHeight) * 0.05;
 
   return (
     <View style={[gs.appBackground, gs.flex1]}>
+      <StatusBar backgroundColor={appBackground2} animated={true} />
       <View
         style={[
           gs.flex1,
@@ -30,24 +44,30 @@ const Existing = () => {
         ]}
       >
         <View>
-          {projectNamesAndIds.map((project, index) => {
-            return (
-              <View key={index} style={[{ marginTop: calcedSpacing }]}>
-                {primaryButton_filled(project.name, page_project(project))}
-              </View>
-            );
-          })}
+          {allProjectNamesAndIds.length > 0 &&
+            allProjectNamesAndIds.map((project, index) => {
+              return (
+                <View key={index} style={[{ marginTop: calcedSpacing }]}>
+                  {primaryButton_filled(project.name, page_project(project), {
+                    border: gray,
+                  })}
+                </View>
+              );
+            })}
         </View>
+        {allProjectNamesAndIds.length < 1 && (
+          <View style={[gs.flex1, gs.justify_center, gs.align_center]}>
+            <Text style={[gs.text_large, gs.text_gray]}>
+              Nothing here yet ...
+            </Text>
+          </View>
+        )}
 
         <View style={[gs.absolute, { bottom: 20, right: 20 }]}>
-          {secondaryButton_outlined(
-            "New Project",
-            page_hop("/create/details"),
-            {
-              round: 30,
-              color: orangeColor,
-            }
-          )}
+          {secondaryButton_outlined("New Project", page_hop("/new"), {
+            round: 30,
+            color: greenColor,
+          })}
         </View>
       </View>
     </View>

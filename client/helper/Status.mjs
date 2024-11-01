@@ -21,8 +21,6 @@ class Status {
   succeed() {
     if (this.success === undefined)
       this.success = true
-
-    console.log(`%c(Status) Good request`, highlight)
   }
   complete() {
     if (this.success === undefined)
@@ -58,7 +56,7 @@ class Status {
     return this.success
   }
   didFail() {
-    if (this.success === false)
+    if (this.success === false || this.success === undefined)
       return true
     else return false
   }

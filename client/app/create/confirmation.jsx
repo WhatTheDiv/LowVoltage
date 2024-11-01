@@ -22,8 +22,17 @@ const NewProject_finish = () => {
   console.log("Confirmation");
   const dispatch = useDispatch();
   const calcedSpacing = useSelector((state) => state.ui.screenHeight) * 0.05;
-  const { projectName, street, city, zip, state, zones, devices, materials } =
-    useSelector((state) => state.newProject);
+  const {
+    projectName,
+    street,
+    city,
+    zip,
+    state,
+    zones,
+    deviceLocations,
+    devices,
+    materials,
+  } = useSelector((state) => state.newProject);
 
   const bus = {
     project: {
@@ -33,6 +42,7 @@ const NewProject_finish = () => {
       zip,
       state,
       zones,
+      deviceLocations,
       devices,
       materials,
     },

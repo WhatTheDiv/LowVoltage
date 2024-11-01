@@ -1,19 +1,21 @@
 import { StyleSheet } from 'react-native'
 
-export const appBackground = 'hsl(255, 100%, 3%)'
-export const appBackground2 = 'hsl(220, 30%, 40%)'
+export const appBackground = '#010207'
+export const appBackground2 = '#050a30'
 export const greenColor = "hsl(120,100%,30%)"
 export const greenColor_a = "hsla(120,100%,30%,.6)"
 export const chocolate_a = "hsla(7,85%,47%,.3)"
 export const orangeColor = 'chocolate'
+export const redColor = 'hsl(0, 70%, 50%)'
 export const orange_a = 'hsla(40, 70%, 60%, .3)'
 export const cold_coldColor = '#12EBFF'
 export const mid_coldColor = '#1960EA'
 export const hot_coldColor = '#A20BEA'
 export const cold_hotColor = '#DB9E09'
 export const hot_hotColor = '#D11608'
-export const gray_a = "hsla(1,0%,50%,.3)"
-export const gray = 'hsl(0, 0%, 60%)'
+export const gray_a = "hsla(0,0%,70%,.2)"
+export const gray = 'hsl(0, 0%, 70%)'
+export const darkGray = 'hsl(0,0%,30%)'
 export const cyanDColor = '#244242'
 export const text_xsmall = 10
 export const text_small = 12
@@ -24,6 +26,7 @@ export const text_bold = '600'
 export const f_err = 'background-color: brown; padding: 5px 20px 5px 20px; border-radius: 5px; color: black; font-weight:bold'
 export const f_gTitle = 'color: orange'
 export const f_hlt = 'color:green'
+export const f_hlt2 = 'color:orange'
 
 export default StyleSheet.create({
   appBackground: { backgroundColor: appBackground },
@@ -32,11 +35,12 @@ export default StyleSheet.create({
   background_white: { backgroundColor: "white" },
   background_orange: { backgroundColor: "chocolate" },
   background_orange_a: { backgroundColor: orange_a },
-  background_red: { backgroundColor: 'red' },
+  background_red: { backgroundColor: redColor },
   background_green: { backgroundColor: greenColor },
   background_blue: { backgroundColor: 'blue' },
   background_yellow: { backgroundColor: 'yellow' },
   background_gray: { backgroundColor: gray },
+  background_gray_a: { backgroundColor: gray_a },
   background_cyan: { backgroundColor: 'cyan' },
   background_cyanD: { backgroundColor: cyanDColor },
   background_coldHot: { backgroundColor: cold_hotColor },
@@ -45,7 +49,7 @@ export default StyleSheet.create({
   background_hotCold: { backgroundColor: hot_coldColor },
 
   border_none: { borderWidth: 0 },
-  border_red: { borderWidth: 1, borderColor: "red" },
+  border_red: { borderWidth: 1, borderColor: redColor },
   border_green: { borderWidth: 1, borderColor: greenColor },
   border_yellow: { borderWidth: 1, borderColor: "yellow" },
   border_black: { borderWidth: 1, borderColor: "black" },
@@ -60,11 +64,11 @@ export default StyleSheet.create({
   border_rad20: { borderRadius: 20 },
 
 
-  text_red: { color: 'red' },
+  text_red: { color: redColor },
   text_black: { color: 'black' },
   text_white: { color: 'white' },
   text_gray: { color: gray },
-  text_darkGray: { color: 'hsl(185,0%,5%)' },
+  text_darkGray: { color: darkGray },
   text_orange: { color: 'chocolate' },
   text_green: { color: greenColor },
   text_appBackground: { color: appBackground },
@@ -83,6 +87,7 @@ export default StyleSheet.create({
   flex_row: { flexDirection: 'row' },
   flex1: { flex: 1 },
   flex_wrap: { flexWrap: 'wrap' },
+  flex_nowrap: { flexWrap: 'nowrap' },
   justify_center: { justifyContent: 'center' },
   justify_around: { justifyContent: 'space-around' },
   justify_between: { justifyContent: 'space-between' },
@@ -92,6 +97,7 @@ export default StyleSheet.create({
   align_end: { alignItems: 'flex-end' },
   relative: { position: 'relative' },
   absolute: { position: 'absolute' },
+  hidden: { overflow: 'hidden' },
 
   width100: {
     width: '100%'
@@ -189,6 +195,7 @@ export default StyleSheet.create({
   padding50: { padding: 50 },
   paddingV50: { paddingVertical: 50 },
   paddingH50: { paddingHorizontal: 50 },
+
 
 
 })

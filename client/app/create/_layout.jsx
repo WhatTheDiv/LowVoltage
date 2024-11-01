@@ -22,7 +22,7 @@ const NewProject_layout = () => {
     headerStyle: {
       backgroundColor: appBackground2,
     },
-    headerTitleAlign: "center",
+    // headerTitleAlign: "center",
   };
 
   useEffect(() => {
@@ -40,6 +40,7 @@ const NewProject_layout = () => {
             options={{
               ...screenOptions,
               headerTitle: render_header("Create New Project"),
+              headerTitleAlign: "center",
             }}
           />
           <Stack.Screen
@@ -85,8 +86,8 @@ const NewProject_layout = () => {
 
 const render_header = (title) => {
   return () => (
-    <View style={[{ paddingBottom: 20 }]}>
-      <Text style={[gs.text_xlarge]}>{title}</Text>
+    <View style={[]}>
+      <Text style={[gs.text_xlarge, gs.text_gray]}>{title}</Text>
     </View>
   );
 };

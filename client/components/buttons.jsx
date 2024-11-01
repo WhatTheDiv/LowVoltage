@@ -4,18 +4,30 @@ import gs, {
   text_large,
   text_bold,
   appBackground2,
+  text_medium,
+  gray,
 } from "../assets/globalStyles";
 
 export const primaryButton_filled = (buttonText, pressFunc, options = {}) => {
   const rad = getRadiusStyle(options.round);
   const bgColor = getBackgroundStyle(options.color);
+  const txtColor = getTextColorStyle(options.textColor);
+  const border = !options.border
+    ? {}
+    : { borderWidth: 0.5, borderColor: options.border };
 
   return (
     <Pressable
-      style={[bgColor, rad, gs.paddingH20, gs.paddingV20]}
+      style={[
+        bgColor,
+        rad,
+        gs.paddingH20,
+        border,
+        { paddingVertical: options.paddingV || 20 },
+      ]}
       onPress={() => pressFunc()}
     >
-      <Text style={[styles.text, gs.text_large]}>{buttonText}</Text>
+      <Text style={[styles.text, gs.text_large, txtColor]}>{buttonText}</Text>
     </Pressable>
   );
 };
@@ -27,22 +39,23 @@ export const secondaryButton_outlined = (
 ) => {
   const rad = getRadiusStyle(options.round);
   const borderColor = getBorderStyle(options.color);
-  const textColor = getTextColorStyle(options.color);
+  const textColor = getTextColorStyle(
+    options.textColor ? options.textColor : options.color
+  );
+  const textSize = getTextSize(options.textSize);
+  const paddingH = getPaddingH(options.paddingH);
 
   return (
     <Pressable
       style={[
-        // gs.border_orange,
-        gs.flex1,
         borderColor,
-        // gs.border_white,
         rad,
         gs.paddingH20,
-        gs.paddingV20,
+        { paddingVertical: options.paddingV || 20 },
       ]}
       onPress={() => pressFunc()}
     >
-      <Text style={[styles.text, gs.text_medium, textColor]}>{buttonText}</Text>
+      <Text style={[styles.text, textSize, textColor]}>{buttonText}</Text>
     </Pressable>
   );
 };
@@ -66,7 +79,7 @@ export const tertiaryButton_noBorder = (
 
 const getTextColorStyle = (color) => {
   return {
-    color: color === undefined ? appBackground2 : color,
+    color: color === undefined ? gray : color,
   };
 };
 const getBackgroundStyle = (color) => {
@@ -82,6 +95,13 @@ const getBorderStyle = (color) => {
     borderWidth: 1,
     borderColor: color === undefined ? appBackground2 : color,
   };
+};
+const getTextSize = (textSize) => {
+  return { fontSize: textSize ? textSize : text_medium };
+};
+
+const getPaddingH = (paddingH) => {
+  return { paddingHorizontal: paddingH || 20 };
 };
 
 const styles = StyleSheet.create({

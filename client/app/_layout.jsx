@@ -17,15 +17,16 @@ const RootLayout = () => {
 
   // [ ] fix routing when canceling 'add zone' for example, delete route stack
   // [ ] add materials, zones, devices pages functionality
+
   return (
     <View style={[gs.appBackground, gs.flex1]}>
       <Provider store={Store}>
-        <View style={[statusBarStyle]} />
         <Stack>
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="fallback" options={{ headerShown: false }} />
           <Stack.Screen name="existing" options={{ headerShown: false }} />
           <Stack.Screen name="create" options={{ headerShown: false }} />
+          <Stack.Screen name="new" options={{ headerShown: false }} />
         </Stack>
       </Provider>
     </View>

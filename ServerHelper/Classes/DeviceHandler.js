@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from 'uuid'
-// import { Device } from './Device';
 import Status from '../../client/helper/Status.mjs';
 
 export class deviceHandler {
@@ -18,16 +17,12 @@ export class deviceHandler {
       return []
     }
 
-    console.log("Hydrating device list: ", deviceArr)
-
     // pull devices from database
     const devices = await this.db.asyncFind({
       $or:
         deviceArr.map(d => ({ _id: d._id }))
 
     })
-
-    console.log("Database reulst: ", devices)
 
     // throw error if no devices hydrated
     if (!devices || devices.length < 1) {
@@ -51,7 +46,7 @@ export class deviceHandler {
 
 
 
-    if (!Array.isArray(deviceList)) status.error('Bad format, addNewDevicesInList')
+    if (!Array.isArray(deviceList)) status.error('Bad array, addNewDevicesInList')
 
 
     // [ ] optimize DeviceHandler with db.asyncFind()

@@ -8,22 +8,33 @@ import { clearError } from "../store/ui_slice";
 const fallback = () => {
   const dispatch = useDispatch();
   const errorMessage = useSelector((state) => state.ui.errorMessage);
+  const spacing = 40;
+  const errorHeaders = [
+    "Yikes ...",
+    "Oh no ...",
+    "Oh jeeze ...",
+    "Oops ...",
+    "Um ...",
+    "Woops ...",
+    "Oh boy ...",
+    "Ffs ...",
+  ];
 
   return (
-    <View style={[gs.justify_center, gs.flex1, gs.align_center]}>
-      <Text>Something bad happend.</Text>
-      <Text style={[gs.marginV5, gs.text_red]}>{errorMessage}</Text>
+    <View
+      style={[gs.justify_center, gs.flex1, gs.align_center, gs.appBackground]}
+    >
+      <Text style={[gs.text_gray, gs.text_large, { marginBottom: spacing }]}>
+        {errorHeaders[Math.floor(Math.random() * errorHeaders.length)]}
+      </Text>
+      <Text style={[gs.text_red, gs.text_medium, { marginBottom: spacing }]}>
+        {errorMessage}
+      </Text>
       <Pressable
-        style={[
-          gs.border_black,
-          gs.border_rad10,
-          gs.marginV20,
-          gs.paddingV10,
-          gs.paddingH20,
-        ]}
+        style={[gs.border_gray, gs.border_rad10, gs.paddingV10, gs.paddingH20]}
         onPress={() => handle_reset(dispatch)}
       >
-        <Text>Reload</Text>
+        <Text style={[gs.text_gray, gs.text_large]}>Reload</Text>
       </Pressable>
     </View>
   );
